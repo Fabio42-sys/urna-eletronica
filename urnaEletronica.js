@@ -29,13 +29,13 @@ function urnaEletronica() {
             console.log('|0|Encerrar a votação');
 
     
-        }while(voto === 0) 
+        }while(votos === 0) 
 
 //  console.clear(); Limpa o console
-    function voto() {
-        voto = parseIntprompt('digite seu voto');
+    function votos() {
+        votos = parseIntprompt('digite seu voto');
    
-        switch (voto) {
+        switch (votos) {
             case 1:
                 totalVotosCandidato1++;
                 console.log('O candidato 1 recebeu um voto')
@@ -97,5 +97,5 @@ function urnaEletronica() {
             }while (valor >= 0);
         
         }
-
+    
 }
