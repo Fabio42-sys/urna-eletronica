@@ -46,10 +46,6 @@ function urnaEletronica() {
 
         case 0:
             encerrarVotacao0++;
-            if (encerrarVotacao0 = true) {
-                console.log('Você deseja encerrar a votação?');
-                prompt('Você deseja encerrar a votação?');
-             }
             break; 
 
 
@@ -65,14 +61,30 @@ function urnaEletronica() {
     if (totalVotosCandidato1 > totalVotosCandidato2 && totalVotosCandidato1 > totalVotosCandidato3) {
         totalVotosBranco5 + totalVotosCandidato1
         console.log('O candidato 1 foi o eleito');
-        console.log("A porcentagem dos votos do candidato 1 foram:"+ (totalVotosCandidato1/votos *100) + "%");
+        console.log("A porcentagem dos votos do candidato 1 foram:"+ (totalVotosCandidato1/totalVotos *100) + "%");
     }else if (totalVotosCandidato2 > totalVotosCandidato1 && totalVotosCandidato2 > totalVotosCandidato3) {
         totalVotosBranco5 + totalVotosCandidato2
         console.log('O candidato 2 foi o eleito');
-        console.log("A porcentagem dos votos do candidato 2 foram:"+ (totalVotosCandidato2/votos *100) + "%");
-    }else (totalVotosCandidato3 > totalVotosCandidato1 && totalVotosCandidato3 > totalVotosCandidato2 && totalVotosBranco5 + totalVotosCandidato3)
+        console.log("A porcentagem dos votos do candidato 2 foram:"+ (totalVotosCandidato2/totalVotos *100) + "%");
+    }else if (totalVotosCandidato3 > totalVotosCandidato1 && totalVotosCandidato3 > totalVotosCandidato2 && totalVotosBranco5 + totalVotosCandidato3) {
         totalVotosBranco5 + totalVotosCandidato3
         console.log('O candidato 3 foi o eleito');
-        console.log("A porcentagem dos votos do candidato 3 foram:"+ (totalVotosCandidato3/votos *100) + "%");
+        console.log("A porcentagem dos votos do candidato 3 foram:"+ (totalVotosCandidato3/totalVotos *100) + "%");
+    }else if (totalVotosNulo8 = true) {
+        console.log('Nenhum candidato foi eleito');
+    } else (totalVotosNulo8 = false) 
+        console.log('Aperte o botão novamente');
 
+    do { 
+        (encerrarVotacao0 = true)
+        prompt('Você deseja encerrar a votação?');
+
+    }while (encerrarVotacao0 = false)
+        console.log('Aperte o botão novamente');
+
+    let totalVotos
+
+       totalVotos = totalVotosCandidato1 + totalVotosCandidato2 + totalVotosCandidato3 + totalVotosBranco5 + totalVotosNulo8
+        
+    
 }
