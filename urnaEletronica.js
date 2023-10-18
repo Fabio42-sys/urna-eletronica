@@ -34,6 +34,7 @@ function urnaEletronica() {
 //  console.clear(); Limpa o console
     function votos() {
         votos = parseIntprompt('digite seu voto');
+        
    
         switch (votos) {
             case 1:
