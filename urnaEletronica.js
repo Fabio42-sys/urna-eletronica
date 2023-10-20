@@ -36,36 +36,41 @@ function urnaEletronica() {
         console.log('[2] Candidato 2: ' + nomeCandidato2);
         console.log('[3] Candidato 3: ' + nomeCandidato3);
         console.log('[5] Voto em branco');
-        console.log('[8] Voto nulo');
 
         voto = parseInt(prompt('Digite sua opção de voto:'));
 
         totalVotos++;
-
-        if (voto === 1) {
-            votosCandidato1++;
-        } else if (voto === 2) {
-            votosCandidato2++;
-        } else if (voto === 3) {
-            votosCandidato3++;
-        } else if (voto === 5) {
-            votosBrancos++;
-        } else if (voto === 8) {
+        
+        if(voto !== 1, 2, 3, 5, 8) {
             votosNulos++;
-        } else if (voto === senhaMesario) {
-
-            encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
-
-            if (encerrarVotacao !== 'S' && encerrarVotacao !== 'N') {
-                alert('Opção inválida!');
-            }
-
-            totalVotos--;
-        } else {
-            return; // botão de emergência
         }
 
+            if (voto === 1) {
+                votosCandidato1++;
+            } else if (voto === 2) {
+                votosCandidato2++;
+            } else if (voto === 3) {
+                votosCandidato3++;
+            } else if (voto === 5) {
+                votosBrancos++;
+
+            } else if (voto === senhaMesario) {
+
+                encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+
+                if (encerrarVotacao !== 'S' && encerrarVotacao !== 'N') {
+                    alert('Opção inválida!');
+                }
+
+            totalVotos--;
+            }   else  {
+                confirm('Você tem certeza que deseja votar nulo?')
+                votosNulos++;
+            }
+
     } while (encerrarVotacao !== 'S');
+
+       
 
     // apresenta os resultados
     console.clear();
@@ -99,5 +104,6 @@ function urnaEletronica() {
     } else {
         console.log('Não houve ganhador nesta urna (empate entre dois ou mais candidatos).');
     }
-
+    
+                
 }
