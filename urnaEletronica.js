@@ -1,5 +1,7 @@
 function urnaEletronica() {
 
+    confirm('Você deseja iniciar o processo de votação?')
+
     // declaração de variáveis
     let voto;
     let votosCandidato1 = 0;
@@ -19,15 +21,57 @@ function urnaEletronica() {
 
     let encerrarVotacao = '';
     let senhaMesario;
+    let nomesCandidatos;
 
     console.log('Início do programa');
 
     console.log('** CONFIGURAÇÃO DA URNA **');
-    senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
-    nomeCandidato1 = prompt('Digite o nome do candidato 1:');
-    nomeCandidato2 = prompt('Digite o nome do candidato 2:');
-    nomeCandidato3 = prompt('Digite o nome do candidato 3:');
 
+    do {
+    senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
+        senhaMesario = prompt('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+
+        if (senhaMesario === 'S') {
+            alert('A senha foi adicionada');
+        } else if (senhaMesario === 'N') {
+            alert('Defina uma senha para o mesario');
+        }
+
+    } while (senhaMesario !== 'S')
+
+    do {
+
+    nomeCandidato1 = prompt('Digite o nome do candidato 1:');
+        nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+        if (nomesCandidatos === 'S')  {
+            alert('O nome foi adicionado!');
+        } else if (nomesCandidatos === 'N') {
+            alert('Re-digite o nome.');
+        } 
+
+
+
+    nomeCandidato2 = prompt('Digite o nome do candidato 2:');
+        nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+
+        if (nomesCandidatos === 'S')  {
+            alert('O nome foi adicionado!');
+        } else if (nomesCandidatos === 'N') 
+            alert('Re-digite o nome.');
+
+
+
+    nomeCandidato3 = prompt('Digite o nome do candidato 3:');
+       nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+
+        if (nomesCandidatos === 'S')  {
+            alert('O nome foi adicionado!');
+        } else if (nomesCandidatos === 'N') 
+            alert('Re-digite o nome.');
+
+    } while (nomesCandidatos !== 'S')
+ 
+    
     // laço de votação
     do {
 
@@ -40,10 +84,6 @@ function urnaEletronica() {
         voto = parseInt(prompt('Digite sua opção de voto:'));
 
         totalVotos++;
-        
-        if(voto !== 1, 2, 3, 5, 8) {
-            votosNulos++;
-        }
 
             if (voto === 1) {
                 votosCandidato1++;
@@ -64,9 +104,8 @@ function urnaEletronica() {
 
             totalVotos--;
             }   else  {
-                confirm('Você tem certeza que deseja votar nulo?')
-                votosNulos++;
-            }
+
+        }
 
     } while (encerrarVotacao !== 'S');
 
