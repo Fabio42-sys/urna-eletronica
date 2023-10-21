@@ -96,9 +96,9 @@ function urnaEletronica() {
 
             } else if (voto === senhaMesario) {
 
-                encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+                senhaMesario = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
 
-                if (encerrarVotacao !== 'S' && encerrarVotacao !== 'N') {
+                if (senhaMesario !== 'S' && senhaMesario !== 'N') {
                     alert('Opção inválida!');
                 }
 
@@ -107,7 +107,7 @@ function urnaEletronica() {
 
         }
 
-    } while (encerrarVotacao !== 'S');
+    } while (senhaMesario !== 'S');
 
        
 
