@@ -19,7 +19,6 @@ function urnaEletronica() {
     let nomeCandidato2;
     let nomeCandidato3;
 
-    let encerrarVotacao = '';
     let senhaMesario;
     let nomesCandidatos;
 
@@ -39,37 +38,46 @@ function urnaEletronica() {
 
     } while (senhaMesario !== 'S')
 
-    do {
-
     nomeCandidato1 = prompt('Digite o nome do candidato 1:');
         nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+
+        do{
+
+            if (nomesCandidatos === 'S')  {
+                alert('O nome foi adicionado!');
+            } else if (nomesCandidatos === 'N') {
+                alert('Re-digite o nome.');
+            } 
+
+        } while (nomesCandidatos !== 'S')
+
+
+    nomeCandidato2 = prompt('Digite o nome do candidato 2:');
+        nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+
+        do{
+
+            if (nomesCandidatos === 'S')  {
+                alert('O nome foi adicionado!');
+            } else if (nomesCandidatos === 'N') {
+                alert('Re-digite o nome.');
+            } 
+
+        } while (nomesCandidatos !== 'S')
+
+    nomeCandidato3 = prompt('Digite o nome do candidato 3:');
+       nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+
+       do{
+
         if (nomesCandidatos === 'S')  {
             alert('O nome foi adicionado!');
         } else if (nomesCandidatos === 'N') {
             alert('Re-digite o nome.');
         } 
 
-
-
-    nomeCandidato2 = prompt('Digite o nome do candidato 2:');
-        nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
-
-        if (nomesCandidatos === 'S')  {
-            alert('O nome foi adicionado!');
-        } else if (nomesCandidatos === 'N') 
-            alert('Re-digite o nome.');
-
-
-
-    nomeCandidato3 = prompt('Digite o nome do candidato 3:');
-       nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
-
-        if (nomesCandidatos === 'S')  {
-            alert('O nome foi adicionado!');
-        } else if (nomesCandidatos === 'N') 
-            alert('Re-digite o nome.');
-
     } while (nomesCandidatos !== 'S')
+
  
     
     // laço de votação
