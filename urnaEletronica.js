@@ -22,6 +22,7 @@ function urnaEletronica() {
     let senhaMesario;
     let encerrarVotação;
     let nomeCandidatos;
+    let confirmarVoto;
 
     console.log('Início do programa');
 
@@ -53,7 +54,7 @@ function urnaEletronica() {
             }
 
         } while (!nomeCandidatos);
-
+    
         do {
 
             nomeCandidato2 = prompt('Digite o nome do candidato 2:');
@@ -79,8 +80,16 @@ function urnaEletronica() {
                     } else {
                         alert('Re-escreva o nome');
                     }
-        
+
+                console.clear();
+                console.log('[1] Candidato 1: ' + nomeCandidato1);
+                console.log('[2] Candidato 2: ' + nomeCandidato2);
+                console.log('[3] Candidato 3: ' + nomeCandidato3);
+                console.log('[5] Voto em branco');
+
                 } while (!nomeCandidatos);
+
+
             
 
 
@@ -94,6 +103,19 @@ function urnaEletronica() {
         console.log('[5] Voto em branco');
 
         voto = parseInt(prompt('Digite sua opção de voto:'));
+        confirmarVoto = confirm('Você deseja computar o voto digitado?');
+
+            if (confirmarVoto) {
+                alert('O voto foi computado!'); 
+            } else {
+                alert('Re-escreva o voto');
+            }
+
+            if (votosNulos) {
+                alert('O voto foi computado!'); 
+            } else {
+                alert('Re-escreva o voto');
+            }
 
         totalVotos++;
 
@@ -106,7 +128,9 @@ function urnaEletronica() {
             } else if (voto === 5) {
                 votosBrancos++;
 
-            } else if (voto === encerrarVotação) {
+            } else if (voto !== votosNulos) {
+                
+            }else if (voto === encerrarVotação) {
 
                encerrarVotação = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
 
@@ -115,9 +139,11 @@ function urnaEletronica() {
                 }
 
             
-            }   else if (voto !== senhaMesario) {
+            }   else if (!voto) {
                     totalVotos--;
             }
+
+
 
     } while (encerrarVotação !== 'S');
 
