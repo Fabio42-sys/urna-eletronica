@@ -1,4 +1,4 @@
-function urnaEletronica() {
+function urnaEletronica() { 
 
     confirm('Você deseja iniciar o processo de votação?')
 
@@ -20,66 +20,70 @@ function urnaEletronica() {
     let nomeCandidato3;
 
     let senhaMesario;
-    let nomesCandidatos;
+    let encerrarVotação;
+    let nomeCandidatos;
 
     console.log('Início do programa');
 
     console.log('** CONFIGURAÇÃO DA URNA **');
 
-    do {
-    senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
-        senhaMesario = prompt('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+        do {
 
-        if (senhaMesario === 'S') {
-            alert('A senha foi adicionada');
-        } else if (senhaMesario === 'N') {
-            alert('Defina uma senha para o mesario');
-        }
+        encerrarVotação = senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
+            senhaMesario = prompt('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
 
-    } while (senhaMesario !== 'S')
+            if (senhaMesario === 'S') {
+                alert('A senha foi adicionada');
+            } else if (senhaMesario === 'N') {
+                alert('Defina uma senha para o mesario');
+            }
 
-    nomeCandidato1 = prompt('Digite o nome do candidato 1:');
-        nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+        } while (senhaMesario !== 'S')
 
-        do{
+        do {
 
-            if (nomesCandidatos === 'S')  {
-                alert('O nome foi adicionado!');
-            } else if (nomesCandidatos === 'N') {
-                alert('Re-digite o nome.');
-            } 
+        nomeCandidato1 = prompt('Digite o nome do candidato 1:');
+        nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
+            
 
-        } while (nomesCandidatos !== 'S')
+            if (nomeCandidato1) {
+                alert('O nome foi adicionada!'); 
+            } else {
+                alert('Re-escreva o nome');
+            }
 
+        } while (!nomeCandidatos);
 
-    nomeCandidato2 = prompt('Digite o nome do candidato 2:');
-        nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+        do {
 
-        do{
-
-            if (nomesCandidatos === 'S')  {
-                alert('O nome foi adicionado!');
-            } else if (nomesCandidatos === 'N') {
-                alert('Re-digite o nome.');
-            } 
-
-        } while (nomesCandidatos !== 'S')
-
-    nomeCandidato3 = prompt('Digite o nome do candidato 3:');
-       nomesCandidatos = prompt('Deseja REALMENTE usar este nome na votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
-
-       do{
-
-        if (nomesCandidatos === 'S')  {
-            alert('O nome foi adicionado!');
-        } else if (nomesCandidatos === 'N') {
-            alert('Re-digite o nome.');
-        } 
-
-    } while (nomesCandidatos !== 'S')
-
- 
+            nomeCandidato2 = prompt('Digite o nome do candidato 2:');
+            nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
+                
     
+                if (nomeCandidato2) {
+                    alert('O nome foi adicionada!'); 
+                } else {
+                    alert('Re-escreva o nome');
+                }
+    
+            } while (!nomeCandidatos);
+
+            do {
+
+                nomeCandidato3 = prompt('Digite o nome do candidato 3:');
+                nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
+                    
+        
+                    if (nomeCandidato3) {
+                        alert('O nome foi adicionada!'); 
+                    } else {
+                        alert('Re-escreva o nome');
+                    }
+        
+                } while (!nomeCandidatos);
+            
+
+
     // laço de votação
     do {
 
@@ -102,20 +106,20 @@ function urnaEletronica() {
             } else if (voto === 5) {
                 votosBrancos++;
 
-            } else if (voto === senhaMesario) {
+            } else if (voto === encerrarVotação) {
 
-                senhaMesario = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+               encerrarVotação = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
 
-                if (senhaMesario !== 'S' && senhaMesario !== 'N') {
-                    alert('Opção inválida!');
+                if (senhaMesario = true) {
+                    alert('Votação encerrada.');
                 }
 
-            totalVotos--;
-            }   else  {
+            
+            }   else if (voto !== senhaMesario) {
+                    totalVotos--;
+            }
 
-        }
-
-    } while (senhaMesario !== 'S');
+    } while (encerrarVotação !== 'S');
 
        
 
