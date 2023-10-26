@@ -20,9 +20,7 @@ function urnaEletronica() {
     let nomeCandidato3;
 
     let senhaMesario;
-    let encerrarVotação;
     let nomeCandidatos;
-    let confirmarVoto;
 
     console.log('Início do programa');
 
@@ -30,7 +28,7 @@ function urnaEletronica() {
 
         do {
 
-        encerrarVotação = senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
+        encerrarVotação = parseInt(prompt('Defina a senha do mesário:'));
             senhaMesario = prompt('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
 
             if (senhaMesario === 'S') {
@@ -103,49 +101,40 @@ function urnaEletronica() {
         console.log('[5] Voto em branco');
 
         voto = parseInt(prompt('Digite sua opção de voto:'));
-        confirmarVoto = confirm('Você deseja computar o voto digitado?');
-
-            if (confirmarVoto) {
-                alert('O voto foi computado!'); 
-            } else {
-                alert('Re-escreva o voto');
-            }
-
-            if (votosNulos) {
-                alert('O voto foi computado!'); 
-            } else {
-                alert('Re-escreva o voto');
-            }
 
         totalVotos++;
 
             if (voto === 1) {
                 votosCandidato1++;
+                console.log('Você selecionou o candidato 1, deseja REALMENTE votar nele?');
+                confirm('Deseja votar no candidato selecionado?');
             } else if (voto === 2) {
                 votosCandidato2++;
+                console.log('Você selecionou o candidato 2, deseja REALMENTE votar nele?');
+                confirm('Deseja votar no candidato selecionado?');
             } else if (voto === 3) {
                 votosCandidato3++;
+                console.log('Você selecionou o candidato 3, deseja REALMENTE votar nele?');
+                confirm('Deseja votar no candidato selecionado?');
             } else if (voto === 5) {
                 votosBrancos++;
-
+                console.log('Você selecionou para votar em branco, deseja REALMENTE votar em branco?');
+                confirm('Deseja votar no candidato selecionado?');
             } else if (voto !== votosNulos) {
-                
-            }else if (voto === encerrarVotação) {
+                votosNulos++;
+                console.log('O voto colocado não é valido e será computado como voto nulo, deseja REALMENTE votar nulo?')
+                confirm('Deseja votar nulo?');
+            }else if (senhaMesario = true) 
 
-               encerrarVotação = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+                do {
 
-                if (senhaMesario = true) {
-                    alert('Votação encerrada.');
-                }
-
-            
-            }   else if (!voto) {
-                    totalVotos--;
-            }
-
-
-
-    } while (encerrarVotação !== 'S');
+                     if (senhaMesario) {
+                        confirm('Deseja REALMENTE encerrar a votação? Precione [Ok] para Sim ou [Cancelar] para Não')
+                     }
+                    
+                } while (!senhaMesario)
+               
+    } while (senhaMesario = false );
 
        
 
