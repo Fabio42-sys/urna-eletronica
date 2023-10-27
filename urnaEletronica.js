@@ -1,4 +1,15 @@
-function urnaEletronica() { 
+function dataHoraAtual() {
+
+    const dataHora = new Date();
+    const dia = dataHora.getDate();
+    const mes = dataHora.getMonth() + 1;
+    const ano = dataHora.getFullYear();
+    
+
+}
+
+
+function urnaEletronica() {
 
     confirm('Você deseja iniciar o processo de votação?')
 
@@ -10,143 +21,149 @@ function urnaEletronica() {
     let votosBrancos = 0;
     let votosNulos = 0;
     let totalVotos = 0;
-    
+
     let nomeGanhador;
     let votosGanhador;
     let ganhador = true;
-    
+
     let nomeCandidato1;
     let nomeCandidato2;
     let nomeCandidato3;
 
     let senhaMesario;
     let nomeCandidatos;
+    let confirmacaoVoto;
+    let confirmarSenha;
 
     console.log('Início do programa');
 
     console.log('** CONFIGURAÇÃO DA URNA **');
 
-        do {
+    do {
 
-        encerrarVotação = parseInt(prompt('Defina a senha do mesário:'));
-            senhaMesario = prompt('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase();
+        senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
+        confirmarSenha = prompt('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [S] para Sim ou [N] para Não').charAt(0).toUpperCase()
 
-            if (senhaMesario === 'S') {
-                alert('A senha foi adicionada');
-            } else if (senhaMesario === 'N') {
-                alert('Defina uma senha para o mesario');
-            }
+        if (senhaMesario === 'S') {
+            alert('A senha foi adicionada');
+        } else if (senhaMesario === 'N') {
+            alert('Defina uma senha para o mesario');
+        }
 
-        } while (senhaMesario !== 'S')
+    } while (senhaMesario !== 'S')
 
-        do {
+    do {
 
         nomeCandidato1 = prompt('Digite o nome do candidato 1:');
         nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
-            
-
-            if (nomeCandidato1) {
-                alert('O nome foi adicionada!'); 
-            } else {
-                alert('Re-escreva o nome');
-            }
-
-        } while (!nomeCandidatos);
-    
-        do {
-
-            nomeCandidato2 = prompt('Digite o nome do candidato 2:');
-            nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
-                
-    
-                if (nomeCandidato2) {
-                    alert('O nome foi adicionada!'); 
-                } else {
-                    alert('Re-escreva o nome');
-                }
-    
-            } while (!nomeCandidatos);
-
-            do {
-
-                nomeCandidato3 = prompt('Digite o nome do candidato 3:');
-                nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
-                    
-        
-                    if (nomeCandidato3) {
-                        alert('O nome foi adicionada!'); 
-                    } else {
-                        alert('Re-escreva o nome');
-                    }
-
-                console.clear();
-                console.log('[1] Candidato 1: ' + nomeCandidato1);
-                console.log('[2] Candidato 2: ' + nomeCandidato2);
-                console.log('[3] Candidato 3: ' + nomeCandidato3);
-                console.log('[5] Voto em branco');
-
-                } while (!nomeCandidatos);
 
 
-            
+        if (nomeCandidato1) {
+            alert('O nome foi adicionada!');
+        } else {
+            alert('Re-escreva o nome');
+        }
+
+    } while (!nomeCandidatos);
+
+    do {
+
+        nomeCandidato2 = prompt('Digite o nome do candidato 2:');
+        nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
+
+
+        if (nomeCandidato2) {
+            alert('O nome foi adicionada!');
+        } else {
+            alert('Re-escreva o nome');
+        }
+
+    } while (!nomeCandidatos);
+
+    do {
+
+        nomeCandidato3 = prompt('Digite o nome do candidato 3:');
+        nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
+
+
+        if (nomeCandidato3) {
+            alert('O nome foi adicionada!');
+        } else {
+            alert('Re-escreva o nome');
+        }
+
+        console.clear();
+        console.log([1] `Candidato 1: ${nomeCandidato1}`);
+        console.log([2] `Candidato 2: ${nomeCandidato1}`);
+        console.log([3] `Candidato 3: ${nomeCandidato1}`);
+        console.log([5] `Votos Brancos:`);
+
+    } while (!nomeCandidatos);
+
+
+
 
 
     // laço de votação
     do {
 
         console.clear();
-        console.log('[1] Candidato 1: ' + nomeCandidato1);
-        console.log('[2] Candidato 2: ' + nomeCandidato2);
-        console.log('[3] Candidato 3: ' + nomeCandidato3);
-        console.log('[5] Voto em branco');
+        console.log([1] `Candidato 1: ${nomeCandidato1}`);
+        console.log([2] `Candidato 2: ${nomeCandidato1}`);
+        console.log([3] `Candidato 3: ${nomeCandidato1}`);
+        console.log([5] `Brancos 5:`);
 
         voto = parseInt(prompt('Digite sua opção de voto:'));
 
         totalVotos++;
 
-            if (voto === 1) {
-                votosCandidato1++;
-                console.log('Você selecionou o candidato 1, deseja REALMENTE votar nele?');
-                confirm('Deseja votar no candidato selecionado?');
-            } else if (voto === 2) {
-                votosCandidato2++;
-                console.log('Você selecionou o candidato 2, deseja REALMENTE votar nele?');
-                confirm('Deseja votar no candidato selecionado?');
-            } else if (voto === 3) {
-                votosCandidato3++;
-                console.log('Você selecionou o candidato 3, deseja REALMENTE votar nele?');
-                confirm('Deseja votar no candidato selecionado?');
-            } else if (voto === 5) {
-                votosBrancos++;
-                console.log('Você selecionou para votar em branco, deseja REALMENTE votar em branco?');
-                confirm('Deseja votar no candidato selecionado?');
-            } else if (voto !== votosNulos) {
-                votosNulos++;
-                console.log('O voto colocado não é valido e será computado como voto nulo, deseja REALMENTE votar nulo?')
-                confirm('Deseja votar nulo?');
-            }else if (senhaMesario = true) 
+        if (voto === 1) {
+            votosCandidato1++;
+            console.log('Você selecionou o candidato 1, deseja REALMENTE votar nele?');
+            confirmacaoVoto = confirm('Deseja votar no candidato selecionado?');
+        } else if (voto === 2) {
+            votosCandidato2++;
+            console.log('Você selecionou o candidato 2, deseja REALMENTE votar nele?');
+            confirmacaoVoto = confirm('Deseja votar no candidato selecionado?');
+        } else if (voto === 3) {
+            votosCandidato3++;
+            console.log('Você selecionou o candidato 3, deseja REALMENTE votar nele?');
+            confirmacaoVoto = confirm('Deseja votar no candidato selecionado?');
+        } else if (voto === 5) {
+            votosBrancos++;
+            console.log('Você selecionou para votar em branco, deseja REALMENTE votar em branco?');
+            confirmacaoVoto = confirm('Deseja votar no candidato selecionado?');
+        } else if (voto !== votosNulos) {
+            votosNulos++;
+            console.log('O voto colocado não é valido e será computado como voto nulo, deseja REALMENTE votar nulo?')
+            confirmacaoVoto = confirm('Deseja votar nulo?');
+        } else if (senhaMesario = true)
 
-                do {
+            do {
 
-                     if (senhaMesario) {
-                        confirm('Deseja REALMENTE encerrar a votação? Precione [Ok] para Sim ou [Cancelar] para Não')
-                     }
-                    
-                } while (!senhaMesario)
-               
-    } while (senhaMesario = false );
+                if (senhaMesario) {
+                    confirm('Deseja REALMENTE encerrar a votação? Precione [Ok] para Sim ou [Cancelar] para Não')
+                }
 
-       
+            } while (!senhaMesario)
+
+    } while (senhaMesario = false);
+
+
 
     // apresenta os resultados
     console.clear();
     console.log('** BOLETIM DE URNA - RESULTADOS **');
     console.log('Total de votos: ' + totalVotos);
-    console.log('Total de votos do(a) candidato(a) ' + nomeCandidato1 + ': ' + votosCandidato1 + ' voto(s) (' + (votosCandidato1 / totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos do(a) candidato(a) ' + nomeCandidato2 + ': ' + votosCandidato2 + ' voto(s) (' + (votosCandidato2 / totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos do(a) candidato(a) ' + nomeCandidato3 + ': ' + votosCandidato3 + ' voto(s) (' + (votosCandidato3 / totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos brancos: ' + votosBrancos+ ' voto(s) (' + (votosBrancos/ totalVotos * 100).toFixed(2) + '%)');
-    console.log('Total de votos nulos: ' + votosNulos + ' voto(s) (' + (votosNulos / totalVotos * 100).toFixed(2) + '%)');
+    console.log(`Total de votos do(a) Candidato(a) ${nomeCandidato1}: ${votosCandidato1} voto(s) (${(votosCandidato1 / totalVotos * 100).toFixed(2)}%)`);
+
+    console.log(`Total de votos do(a) Candidato(a) ${nomeCandidato2}: ${votosCandidato2} voto(s) (${(votosCandidato2 / totalVotos * 100).toFixed(2)}%)`);
+
+    console.log(`Total de votos do(a) Candidato(a) ${nomeCandidato3}: ${votosCandidato3} voto(s) (${(votosCandidato3 / totalVotos * 100).toFixed(2)}%)`);
+
+    console.log(`Total de votos Brancos: ${votosBrancos}  voto(s)  (${(votosBrancos / totalVotos * 100).toFixed(2)}%)`);
+
+    console.log(`Total de votos Nulos: ${votosNulos}  voto(s)  (${(votosNulos / totalVotos * 100).toFixed(2)}%)`);
 
     // determina o ganhador
     if (votosCandidato1 > votosCandidato2 && votosCandidato1 > votosCandidato3) {
@@ -164,12 +181,16 @@ function urnaEletronica() {
 
     // apresenta o ganhador
     console.log('------');
-    
+
     if (ganhador) {
         console.log('O ganhador nesta urna foi o candidato ' + nomeGanhador + ' com ' + votosGanhador + ' voto(s) absoluto(s) (' + (votosGanhador / totalVotos * 100).toFixed(2) + '%)');
     } else {
         console.log('Não houve ganhador nesta urna (empate entre dois ou mais candidatos).');
     }
-    
-                
+
+    dataHoraFinal = dataHoraAtual();
+
+    console.log(`Data/hora de inicio da votação: ${dataHoraInicio}`);
+    console.log(`Data/hora de encerramento da votação: ${dataHoraFinal}`)
+
 }
