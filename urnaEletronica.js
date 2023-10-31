@@ -34,6 +34,7 @@ function urnaEletronica() {
     let nomeCandidato1;
     let nomeCandidato2;
     let nomeCandidato3;
+    let Nulos
 
     let senhaMesario;
     let nomeCandidatos;
@@ -47,7 +48,7 @@ function urnaEletronica() {
     console.log('* CONFIGURAÇÃO DA URNA *');
 
         senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
-        confirmarSenha = confirm('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [OK] para Sim ou [Cancelar] para Não')
+        confirmarSenha = confirm('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [OK] para Sim ou [Cancelar] para Não');
 
     do {
 
@@ -123,13 +124,11 @@ function urnaEletronica() {
             votosBrancos++;
             console.log('Você selecionou para votar em branco, deseja REALMENTE votar em branco?');
             confirmaçaoVoto = confirm('Deseja votar no candidato selecionado?');
-        } else if (voto !== votosNulos) {
-            votosNulos++;
-            console.log('O voto colocado não é valido e será computado como voto nulo, deseja REALMENTE votar nulo?')
-            confirmaçaoVoto = confirm('Deseja votar nulo?');
         } else if (senhaMesario) {
-            encerrarVotacao = confirm('Deseja REALMENTE encerrar a votação? Precione [Ok] para Sim ou [Cancelar] para Não')
-        }
+            encerrarVotacao = confirm('Deseja REALMENTE encerrar a votação? Precione [Ok] para Sim ou [Cancelar] para Não');
+        }else (voto !== Nulos) 
+            votosNulos++;
+
 
     } while (!encerrarVotacao);
 
@@ -175,6 +174,6 @@ function urnaEletronica() {
     dataHoraFinal = dataHoraAtual();
 
     console.log(`Data/hora de inicio da votação: ${dataHoraInicial}`);
-    console.log(`Data/hora de encerramento da votação: ${dataHoraFinal}`)
+    console.log(`Data/hora de encerramento da votação: ${dataHoraFinal}`);
 
 }
