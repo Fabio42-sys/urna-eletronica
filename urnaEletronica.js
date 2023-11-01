@@ -8,13 +8,49 @@ function dataHoraAtual() {
     const min = dataHora.getMinutes();
     const seg = dataHora.getSeconds();
     const ms = dataHora.getMilliseconds();
-    
+
     return `${dia}/${mes}/${ano} ${hora}:${min}:${seg} ${ms}`;
 
 }
 
+    async function verificarUrnaAtual() {
 
-function urnaEletronica() {
+        let hashUrnaAtual;
+        let hashValido;
+
+        await  fetch('urnaEletronica.js')
+            .then(Response =>  Response.text())
+            .then(Response => CryptoJS.SHA256(Response).toString())
+            .then(Response => hashUrnaAtual = Response);
+
+        await fetch('hashValido')
+            .then(Response => Response.text())
+            .then(Response => hashValido = Response);
+
+        return {
+            hashUrnaAtual: hashUrnaAtual,
+            hashValido: hashValido,
+            status: hashUrnaAtual === hashValido
+        } 
+
+    }
+
+async function audioConfirmacao() {
+    const audio = new Audio('./confirmacao.mp3');
+    await audio.play();
+}
+
+// Declarando o retorno explicitamente como um objeto do tipo Promise
+
+// function audioConfirmacao() {
+//     return new Promise((resolve) => {
+//         const audio = new Audio('./confirmacao.mp3');
+//         audio.onended = resolve;
+//         audio.play();
+//     })
+// }
+
+async function urnaEletronica() {
 
     confirm('Você deseja iniciar o processo de votação?');
 
@@ -34,21 +70,26 @@ function urnaEletronica() {
     let nomeCandidato1;
     let nomeCandidato2;
     let nomeCandidato3;
-    let Nulos
 
     let senhaMesario;
     let nomeCandidatos;
-    let confirmaçaoVoto;
+    let confirmacaoVoto = true;
     let encerrarVotacao;
-    let confirmarSenha
+    let confirmarSenha;
     let dataHoraInicial, dataHoraFinal;
 
     console.log('Início do programa');
 
     console.log('* CONFIGURAÇÃO DA URNA *');
 
-        senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
-        confirmarSenha = confirm('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [OK] para Sim ou [Cancelar] para Não');
+    senhaMesario = parseInt(prompt('Defina a senha do mesário:'));
+    confirmarSenha = confirm('Deseja REALMENTE usar esta senha para o controle do mesario? Digite [OK] para Sim ou [Cancelar] para Não');
+
+        if(confirmarSenha) {
+            alert('A senha foi adicionada');
+        } else {
+            alert('Digite uma senha');
+        }
 
     do {
 
@@ -56,7 +97,7 @@ function urnaEletronica() {
         nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
 
 
-        if (nomeCandidato1) {
+        if (nomeCandidatos) {
             alert('O nome foi adicionada!');
         } else {
             alert('Re-escreva o nome');
@@ -70,7 +111,7 @@ function urnaEletronica() {
         nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
 
 
-        if (nomeCandidato2) {
+        if (nomeCandidatos) {
             alert('O nome foi adicionada!');
         } else {
             alert('Re-escreva o nome');
@@ -84,7 +125,7 @@ function urnaEletronica() {
         nomeCandidatos = confirm('Deseja REALMENTE usar este nome na votação? Precione [Ok] para Sim ou [Cancelar] para Não');
 
 
-        if (nomeCandidato3) {
+        if (nomeCandidatos) {
             alert('O nome foi adicionada!');
         } else {
             alert('Re-escreva o nome');
@@ -106,29 +147,60 @@ function urnaEletronica() {
 
         voto = parseInt(prompt('Digite sua opção de voto:'));
 
-        totalVotos++;
-
-        if (voto === 1) {
-            votosCandidato1++;
-            console.log('Você selecionou o candidato 1, deseja REALMENTE votar nele?');
-            confirmaçaoVoto = confirm('Deseja votar no candidato selecionado?');
-        } else if (voto === 2) {
-            votosCandidato2++;
-            console.log('Você selecionou o candidato 2, deseja REALMENTE votar nele?');
-            confirmaçaoVoto = confirm('Deseja votar no candidato selecionado?');
-        } else if (voto === 3) {
-            votosCandidato3++;
-            console.log('Você selecionou o candidato 3, deseja REALMENTE votar nele?');
-            confirmaçaoVoto = confirm('Deseja votar no candidato selecionado?');
-        } else if (voto === 5) {
-            votosBrancos++;
-            console.log('Você selecionou para votar em branco, deseja REALMENTE votar em branco?');
-            confirmaçaoVoto = confirm('Deseja votar no candidato selecionado?');
-        } else if (senhaMesario) {
-            encerrarVotacao = confirm('Deseja REALMENTE encerrar a votação? Precione [Ok] para Sim ou [Cancelar] para Não');
-        }else (voto !== Nulos) 
-            votosNulos++;
-
+            if (voto === 1) {             
+                console.log('Você selecionou o candidato 1, deseja REALMENTE votar nele?');
+                confirmacaoVoto = confirm('Deseja votar no candidato selecionado?');
+                if (confirmacaoVoto) {
+                    alert('O voto foi computado');
+                    totalVotos++;
+                    votosCandidato1++;
+                    await audioConfirmacao()
+                } else {
+                    alert('Digite outro voto')
+                }
+            } else if (voto === 2) {       
+                console.log('Você selecionou o candidato 2, deseja REALMENTE votar nele?');
+                confirmacaoVoto = confirm('Deseja votar no candidato selecionado?');
+                if (confirmacaoVoto) {
+                    alert('O voto foi computado');
+                    totalVotos++;
+                    votosCandidato2++;
+                    await audioConfirmacao();
+                } else {
+                    alert('Digite outro voto')
+                }
+            } else if (voto === 3) {         
+                console.log('Você selecionou o candidato 3, deseja REALMENTE votar nele?');
+                confirmacaoVoto = confirm('Deseja votar no candidato selecionado?');
+                if (confirmacaoVoto) {
+                    alert('O voto foi computado');
+                    totalVotos++;
+                    votosCandidato3++;
+                    await audioConfirmacao();
+                } else {
+                    alert('Digite outro voto')
+                }
+            } else if (voto === 5) {               
+                console.log('Você selecionou para votar em branco, deseja REALMENTE votar em branco?');
+                confirmacaoVoto = confirm('Deseja votar em branco?');
+                if (confirmacaoVoto) {
+                    alert('O voto foi computado');
+                    totalVotos++;
+                    votosBrancos++;
+                    await audioConfirmacao();
+                } else {
+                    alert('Digite outro voto')
+                }
+            } else if (senhaMesario) {
+                encerrarVotacao = confirm('Deseja REALMENTE encerrar a votação? Precione [Ok] para Sim ou [Cancelar] para Não');
+                if(encerrarVotacao){
+                    alert('Votação encerrada');
+                } else {
+                    alert('Continue a votação');
+                }
+            } else {
+                votosNulos++;
+            }
 
     } while (!encerrarVotacao);
 
@@ -176,4 +248,15 @@ function urnaEletronica() {
     console.log(`Data/hora de inicio da votação: ${dataHoraInicial}`);
     console.log(`Data/hora de encerramento da votação: ${dataHoraFinal}`);
 
+    await verificarUrnaAtual().then(verificacao => {
+        if (verificacao.status) {
+            console.log('Hashes verificados, urna integra.');
+        } else {
+            console.log('URNA ADULTERADA, DEVE SER DESTACADA!');
+            console.log(`Hash da urna: ${verificacao.hashUrnaAtual}`);
+            console.log(`Hash esperado: ${verificacao.hashValido}`);
+        }
+            console.log('Fim do programa');
+    })
+    
 }
