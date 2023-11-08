@@ -13,42 +13,82 @@ function dataHoraAtual() {
 
 }
 
-    async function verificarUrnaAtual() {
+async function verificarUrnaAtual() {
 
-        let hashUrnaAtual;
-        let hashValido;
+    let hashUrnaAtual;
+    let hashValido;
 
-        await  fetch('urnaEletronica.js')
-            .then(Response =>  Response.text())
-            .then(Response => CryptoJS.SHA256(Response).toString())
-            .then(Response => hashUrnaAtual = Response);
+    await  fetch('urnaEletronica.js')
+        .then(Response =>  Response.text())
+        .then(Response => CryptoJS.SHA256(Response).toString())
+        .then(Response => hashUrnaAtual = Response);
 
-        await fetch('hashValido')
-            .then(Response => Response.text())
-            .then(Response => hashValido = Response);
+    await fetch('hashValido')
+        .then(Response => Response.text())
+        .then(Response => hashValido = Response);
 
-        return {
-            hashUrnaAtual: hashUrnaAtual,
-            hashValido: hashValido,
-            status: hashUrnaAtual === hashValido
-        } 
+    return {
+        hashUrnaAtual: hashUrnaAtual,
+        hashValido: hashValido,
+        status: hashUrnaAtual === hashValido
+    } 
 
-    }
-
-async function audioConfirmacao() {
-    const audio = new Audio('./confirmacao.mp3');
-    await audio.play();
 }
 
-// Declarando o retorno explicitamente como um objeto do tipo Promise
+// Executa antes das funções.
 
-// function audioConfirmacao() {
-//     return new Promise((resolve) => {
-//         const audio = new Audio('./confirmacao.mp3');
-//         audio.onended = resolve;
-//         audio.play();
-//     })
-// }
+const dados = JSON.parse(localStorage.getItem('dados'));
+
+    document.getElementById('tela').innerHTML = `Nome: ${dados.nome} <br>`;
+    document.getElementById('tela').innerHTML += `Idade: ${dados.idade} <br>`;
+    document.getElementById('tela').innerHTML += `Time: ${dados.time} <br>`;
+    
+// Essa é a função responsavel por gravar os dados ( Usando a "const dados = {}" você pode colocar mais de um chave (key) ).
+
+function gravaDados() {
+
+    const dados = {
+        Candidato1: {
+            Nome: document.getElementById('nome').value,
+            Numero: document.getElementById('numero').value,
+        },
+        Candidato2: {
+            Nome: document.getElementById('nome').value,
+            Numero: document.getElementById('numero').value,
+        },
+        Candidato3: {
+            Nome: document.getElementById('nome').value,
+            Numero: document.getElementById('numero').value,
+        },
+        Candidato4: {
+            Nome: document.getElementById('nome').value,
+            Numero: document.getElementById('numero').value,
+        },
+        Candidato5: {
+            Nome: document.getElementById('nome').value,
+            Numero: document.getElementById('numero').value,
+        }
+    }
+
+// Aqui usando a chave (key) dados nós apresentamos os valores (nome, idade e time) na tela do usuario.
+    document.getElementById('tela').innerHTML = `Nome: ${dados.nome} <br>`;
+    document.getElementById('tela').innerHTML += `Idade: ${dados.idade} <br>`;
+    document.getElementById('tela').innerHTML += `Time: ${dados.time} <br>`;
+
+// Aqui é apresentado na tela do usuario o valor que foi guardado no local-storage.
+
+    localStorage.setItem('dados', JSON.stringify(dados));
+
+}
+
+// Com esta função nós apagamos os dados que foram gravados tanto na tela do usuario quando o local-storage da maquina.
+
+function apagarDados() {
+
+    localStorage.removeItem('nome');
+    document.getElementById('tela').innerHTML = '';
+
+}
 
 async function urnaEletronica() {
 
